@@ -1,9 +1,12 @@
 package org.soonhyung.beautynote.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import org.soonhyung.beautynote.R;
 import org.soonhyung.beautynote.common.Dictionary;
@@ -27,7 +30,7 @@ public class MainDrawerListAdapter extends ArrayAdapter<Dictionary> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		/*final int pos = position;
+		final int pos = position;
 		View view = convertView;
 
 		if (view == null) {
@@ -49,14 +52,8 @@ public class MainDrawerListAdapter extends ArrayAdapter<Dictionary> {
 			imageview.setBackgroundResource(rId[pos]);
 		}
 
-		if (pos == 6 || pos == 7) {
-			if (Util.loadSharedPreferences(context, Global.STORTYPE).equals("01") || Util.loadSharedPreferences(context, Global.STORTYPE).equals("02")) {
-				linearVi.setVisibility(View.VISIBLE);
-			}else{
-				linearVi.setVisibility(View.GONE);
-			}
-		}*/
+		linearVi.setVisibility(View.VISIBLE);
 
-		return convertView;
+		return view;
 	}
 }
