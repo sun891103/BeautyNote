@@ -49,7 +49,7 @@ public class IntroActivity extends AppCompatActivity {
         @Override
         public void run() {
             try {
-                sleep(2000);
+                sleep(1000);
 
                 Intent intent = new Intent(IntroActivity.this, MainActivity.class);
                 startActivity(intent);
