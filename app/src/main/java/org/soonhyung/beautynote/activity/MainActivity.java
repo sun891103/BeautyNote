@@ -9,17 +9,25 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
 
 import org.soonhyung.beautynote.R;
+import org.soonhyung.beautynote.adapter.MainDrawerListAdapter;
 import org.soonhyung.beautynote.common.AlertUtils;
+import org.soonhyung.beautynote.common.Dictionary;
+
+import java.util.ArrayList;
 
 import static org.soonhyung.beautynote.R.id.drawer_layout;
 
 public class MainActivity extends AppCompatActivity {
+
+    private MainDrawerListAdapter mainDrawerListAdapter;
+    private ArrayList<Dictionary> arrayList = new ArrayList<Dictionary>();
 
     DrawerLayout drawerLayout;
     ListView menuListview;
@@ -43,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
         drawerLayout = (DrawerLayout) findViewById(drawer_layout);
         menuListview = (ListView) findViewById(R.id.menu_listview);
+        View header = LayoutInflater.from(this).inflate(R.layout.drawer_list_header, null);
+        menuListview.addHeaderView(header);
+
+        mainDrawerListAdapter = new MainDrawerListAdapter(MainActivity.this, R.layout.drawer_list, arrayList);
+        menuListview.setAdapter(mainDrawerListAdapter);
         fab = (FloatingActionButton) findViewById(R.id.fab);
     }
 
