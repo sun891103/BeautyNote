@@ -1,79 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.soonhyung.beautynote.activity.MainActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
-                <fragment
-                    android:id="@+id/frag1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:name="org.soonhyung.beautynote.fragment.MainFragment1"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <fragment
-                    android:id="@+id/frag2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:name="org.soonhyung.beautynote.fragment.MainFragment2"/>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <fragment
-                    android:id="@+id/frag3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:name="org.soonhyung.beautynote.fragment.MainFragment3"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <fragment
-                    android:id="@+id/frag4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:name="org.soonhyung.beautynote.fragment.MainFragment4"/>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
+    android:id="@+id/drawer_layout">
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fabContainer">
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <fragment
+                        android:id="@+id/frag1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:name="org.soonhyung.beautynote.fragment.MainFragment1"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <fragment
+                        android:id="@+id/frag2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:name="org.soonhyung.beautynote.fragment.MainFragment2"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <fragment
+                        android:id="@+id/frag3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:name="org.soonhyung.beautynote.fragment.MainFragment3"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <fragment
+                        android:id="@+id/frag4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:name="org.soonhyung.beautynote.fragment.MainFragment4"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_dialog_dialer" />
+
     </FrameLayout>
 
-</FrameLayout>
+    <ListView
+        android:id="@+id/menu_listview"
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:listSelector="#00000000"
+        android:divider="@null"
+        android:background="#123123">
+    </ListView>
+</android.support.v4.widget.DrawerLayout>

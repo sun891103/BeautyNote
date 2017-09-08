@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.soonhyung.beautynote.R;
-import org.soonhyung.beautynote.SaveMemberPopActivity;
+import org.soonhyung.beautynote.popup.SaveMemberPopup;
 
 /**
  * Created by soonhyung on 2017-09-07.
@@ -31,7 +31,7 @@ public class MainFragment1 extends Fragment{
         ((Button) getView().findViewById(R.id.btn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), SaveMemberPopActivity.class));
+                startActivity(new Intent(getActivity(), SaveMemberPopup.class));
             }
         });
     }

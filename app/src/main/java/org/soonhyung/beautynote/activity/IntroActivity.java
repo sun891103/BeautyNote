@@ -49,6 +49,7 @@ public class IntroActivity extends AppCompatActivity {
         @Override
         public void run() {
             try {
+                //인트로 열심히 만들었는데 안보여서 슬립 ㅋㅋㅋ
                 sleep(1000);
 
                 Intent intent = new Intent(IntroActivity.this, MainActivity.class);

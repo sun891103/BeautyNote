@@ -6,17 +6,23 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
+import android.widget.ListView;
 
 import org.soonhyung.beautynote.R;
 import org.soonhyung.beautynote.common.AlertUtils;
 
+import static org.soonhyung.beautynote.R.id.drawer_layout;
+
 public class MainActivity extends AppCompatActivity {
+
+    DrawerLayout drawerLayout;
+    ListView menuListview;
 
     private FloatingActionButton fab;
     private int w, h, r, fx, fy;
@@ -35,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
+        drawerLayout = (DrawerLayout) findViewById(drawer_layout);
+        menuListview = (ListView) findViewById(R.id.menu_listview);
         fab = (FloatingActionButton) findViewById(R.id.fab);
     }
 
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else if(motionEvent.getAction() == MotionEvent.ACTION_UP){
                     if(Math.abs(fx - (int)fab.getX()) < 200 && Math.abs(fy - (int)fab.getY()) < 200) {
-                        Toast.makeText(getApplicationContext(), "안녕", Toast.LENGTH_LONG).show();
+                        drawerLayout.openDrawer(menuListview);
                     }
                 }
 
