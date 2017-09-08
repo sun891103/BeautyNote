@@ -1,4 +1,4 @@
-package org.soonhyung.beautynote;
+package org.soonhyung.beautynote.common;
 
 import android.app.Activity;
 import android.app.AlertDialog;

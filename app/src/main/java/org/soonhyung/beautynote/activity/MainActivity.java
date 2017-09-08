@@ -1,4 +1,4 @@
-package org.soonhyung.beautynote;
+package org.soonhyung.beautynote.activity;
 
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
@@ -12,6 +12,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import org.soonhyung.beautynote.R;
+import org.soonhyung.beautynote.common.AlertUtils;
 
 public class MainActivity extends AppCompatActivity {
 

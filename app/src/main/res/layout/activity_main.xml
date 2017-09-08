@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.soonhyung.beautynote.MainActivity">
+    tools:context="org.soonhyung.beautynote.activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                     android:id="@+id/frag1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:name="org.soonhyung.beautynote.MainFragment1"/>
+                    android:name="org.soonhyung.beautynote.fragment.MainFragment1"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                     android:id="@+id/frag2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:name="org.soonhyung.beautynote.MainFragment2"/>
+                    android:name="org.soonhyung.beautynote.fragment.MainFragment2"/>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -50,7 +50,7 @@
                     android:id="@+id/frag3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:name="org.soonhyung.beautynote.MainFragment3"/>
+                    android:name="org.soonhyung.beautynote.fragment.MainFragment3"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -60,7 +60,7 @@
                     android:id="@+id/frag4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:name="org.soonhyung.beautynote.MainFragment4"/>
+                    android:name="org.soonhyung.beautynote.fragment.MainFragment4"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

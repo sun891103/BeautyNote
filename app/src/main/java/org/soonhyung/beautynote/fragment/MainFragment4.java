@@ -1,4 +1,4 @@
-package org.soonhyung.beautynote;
+package org.soonhyung.beautynote.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.soonhyung.beautynote.R;
 
 /**
  * Created by soonhyung on 2017-09-07.

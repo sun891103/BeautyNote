@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="org.soonhyung.beautynote.IntroActivity">
+    tools:context="org.soonhyung.beautynote.activity.IntroActivity">
 
     <ImageView
         android:id="@+id/introBackImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/introbackground"/>
 
 </LinearLayout>
