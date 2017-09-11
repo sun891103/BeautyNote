@@ -40,6 +40,11 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "";
+        try {
+            sql = Utils.getQuery(context, "db.dropMemo");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         db.execSQL(sql);
         onCreate(db);
     }
