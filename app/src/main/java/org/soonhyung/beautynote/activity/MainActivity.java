@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.soonhyung.beautynote.R;
@@ -27,7 +28,7 @@ import static org.soonhyung.beautynote.R.id.drawer_layout;
 public class MainActivity extends AppCompatActivity {
 
     private MainDrawerListAdapter mainDrawerListAdapter;
-    private ArrayList<Dictionary> arrayList = new ArrayList<Dictionary>();
+    private ArrayList<Dictionary> arrMenu = new ArrayList<Dictionary>();
 
     DrawerLayout drawerLayout;
     ListView menuListview;
@@ -53,9 +54,45 @@ public class MainActivity extends AppCompatActivity {
         menuListview = (ListView) findViewById(R.id.menu_listview);
         View header = LayoutInflater.from(this).inflate(R.layout.drawer_list_header, null);
         menuListview.addHeaderView(header);
-
-        mainDrawerListAdapter = new MainDrawerListAdapter(MainActivity.this, R.layout.drawer_list, arrayList);
+        Dictionary dic = new Dictionary();
+        dic.addString("id", "0");
+        dic.addString("name", "매출등록");
+        arrMenu.add(dic);
+        dic = new Dictionary();
+        dic.addString("id", "1");
+        dic.addString("name", "매출조회");
+        arrMenu.add(dic);
+        dic = new Dictionary();
+        dic.addString("id", "2");
+        dic.addString("name", "예약등록");
+        arrMenu.add(dic);
+        dic = new Dictionary();
+        dic.addString("id", "3");
+        dic.addString("name", "예약조회");
+        arrMenu.add(dic);
+        dic = new Dictionary();
+        dic.addString("id", "4");
+        dic.addString("name", "고객등록");
+        arrMenu.add(dic);
+        dic = new Dictionary();
+        dic.addString("id", "5");
+        dic.addString("name", "고객조회");
+        arrMenu.add(dic);
+        dic = new Dictionary();
+        dic.addString("id", "6");
+        dic.addString("name", "카카오톡 보내기");
+        arrMenu.add(dic);
+        dic = new Dictionary();
+        dic.addString("id", "7");
+        dic.addString("name", "카메라");
+        arrMenu.add(dic);
+        dic = new Dictionary();
+        dic.addString("id", "8");
+        dic.addString("name", "갤러리");
+        arrMenu.add(dic);
+        mainDrawerListAdapter = new MainDrawerListAdapter(MainActivity.this, R.layout.drawer_list, arrMenu);
         menuListview.setAdapter(mainDrawerListAdapter);
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
     }
 
@@ -80,6 +117,15 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 return true;
+            }
+        });
+
+        menuListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String id = arrMenu.get(i - 1).getString("id");
+                String name = arrMenu.get(i - 1).getString("name");
+                AlertUtils.showOkDialog(MainActivity.this, name, "개발중", null);
             }
         });
     }
