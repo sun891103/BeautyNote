@@ -10,30 +10,44 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import org.soonhyung.beautynote.R;
-import org.soonhyung.beautynote.popup.SaveMemberPopup;
+import org.soonhyung.beautynote.popup.SaveMemoPopup;
 
 /**
  * Created by soonhyung on 2017-09-07.
  */
 
-public class ReserveFragment extends Fragment {
-    public ReserveFragment() {
+public class MemoFragment extends Fragment{
+
+    ImageButton btnAddMemo;
+
+    public MemoFragment() {
+
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.flagment_reserve, container, false);
+        return inflater.inflate(R.layout.flagment_memo, container, false);
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        ((ImageButton) getView().findViewById(R.id.btn_add_reserve)).setOnClickListener(new View.OnClickListener() {
+        init();
+    }
+
+    private void init(){
+        btnAddMemo = (ImageButton) getView().findViewById(R.id.btn_add_memo);
+
+        initEvent();
+    }
+
+    private void initEvent(){
+        btnAddMemo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), SaveMemberPopup.class));
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), SaveMemoPopup.class));
             }
         });
     }

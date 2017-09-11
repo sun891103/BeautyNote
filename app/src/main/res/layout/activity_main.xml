@@ -18,6 +18,21 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1">
+                <fragment
+                    android:id="@+id/fragment_reserve"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:name="org.soonhyung.beautynote.fragment.ReserveFragment"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#EAEAEA"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -40,23 +55,8 @@
                         android:id="@+id/frag2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:name="org.soonhyung.beautynote.fragment.MainFragment2"/>
+                        android:name="org.soonhyung.beautynote.fragment.MemoFragment"/>
                 </LinearLayout>
-            </LinearLayout>
-            <ImageView
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#EAEAEA"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
-                <fragment
-                    android:id="@+id/fragment_reserve"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:name="org.soonhyung.beautynote.fragment.ReserveFragment"/>
             </LinearLayout>
         </LinearLayout>
 
