@@ -148,6 +148,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(menuListview)){
+            drawerLayout.closeDrawer(menuListview);
+            return;
+        }
+
         AlertUtils.showYesNoDialog(MainActivity.this, "뷰티노트", "종료하시겠습니까?", new AlertUtils.YesNoDialogCallBack() {
             @Override
             public void onYes() {
