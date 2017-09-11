@@ -1,6 +1,8 @@
 package org.soonhyung.beautynote.activity;
 
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,12 +22,20 @@ import org.soonhyung.beautynote.R;
 import org.soonhyung.beautynote.adapter.MainDrawerListAdapter;
 import org.soonhyung.beautynote.common.AlertUtils;
 import org.soonhyung.beautynote.common.Dictionary;
+import org.soonhyung.beautynote.common.Utils;
+import org.soonhyung.beautynote.database.MySQLiteOpenHelper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.soonhyung.beautynote.R.id.drawer_layout;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static MySQLiteOpenHelper helper;
+    public static SQLiteDatabase db;
+    private String dbName;
+    private String dbVersion;
 
     private MainDrawerListAdapter mainDrawerListAdapter;
     private ArrayList<Dictionary> arrMenu = new ArrayList<Dictionary>();
@@ -39,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initDB();
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
@@ -47,6 +60,25 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         initEvent();
+    }
+
+    private void initDB(){
+        try {
+            dbName = Utils.getQuery(this, "db.name");
+            dbVersion = Utils.getQuery(this, "db.version");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        helper = new MySQLiteOpenHelper(this, dbName, null, Integer.parseInt(dbVersion));
+        db = helper.getWritableDatabase();
+    }
+
+    public static Cursor select(String sql){
+        return db.rawQuery(sql, null);
+    }
+
+    public static void execSql(String sql){
+        db.execSQL(sql);
     }
 
     private void init(){

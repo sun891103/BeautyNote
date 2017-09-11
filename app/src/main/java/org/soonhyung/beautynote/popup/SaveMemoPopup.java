@@ -5,19 +5,22 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import org.soonhyung.beautynote.R;
+import org.soonhyung.beautynote.activity.MainActivity;
+import org.soonhyung.beautynote.common.AlertUtils;
+import org.soonhyung.beautynote.common.Utils;
+
+import java.io.IOException;
 
 public class SaveMemoPopup extends Activity {
 
     EditText editSubject;
     EditText editComment;
-    LinearLayout linearMemo;
-
-    InputMethodManager imm;
+    Button btnMemoSave;
+    Button btnMemoCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +42,87 @@ public class SaveMemoPopup extends Activity {
     private void init(){
         editSubject = (EditText) findViewById(R.id.edit_memo_subject);
         editComment = (EditText) findViewById(R.id.edit_memo_comment);
-        linearMemo = (LinearLayout) findViewById(R.id.linear_memo);
+        btnMemoSave = (Button) findViewById(R.id.btn_memo_save);
+        btnMemoCancel = (Button) findViewById(R.id.btn_memo_cancel);
 
-        imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        initEvent();
     }
 
     private void initEvent(){
-        linearMemo.setOnClickListener(new View.OnClickListener() {
+        btnMemoSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imm.hideSoftInputFromWindow(editSubject.getWindowToken(), 0);
-                imm.hideSoftInputFromWindow(editComment.getWindowToken(), 0);
+                if(editSubject.getText().toString().equals("")){
+                    AlertUtils.showOkDialog(SaveMemoPopup.this, "메모", "제목을 입력하세요", null);
+                    return;
+                }
+
+                if(editComment.getText().toString().equals("")){
+                    AlertUtils.showOkDialog(SaveMemoPopup.this, "메모", "내용을 입력하세요", null);
+                    return;
+                }
+
+                AlertUtils.showYesNoDialog(SaveMemoPopup.this, "메모", "입력한 내용을 저장하시겠습니까?", new AlertUtils.YesNoDialogCallBack() {
+                    @Override
+                    public void onYes() {
+                        String sql = "";
+                        try {
+                            sql = Utils.getQuery(getApplicationContext(), "db.insMemo");
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        MainActivity.execSql(String.format(sql, editSubject.getText().toString(), editComment.getText().toString()));
+
+                        finish();
+                    }
+
+                    @Override
+                    public void onNo() {
+
+                    }
+                });
             }
         });
+
+        btnMemoCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!editSubject.getText().toString().equals("")||!editComment.getText().toString().equals("")){
+                    AlertUtils.showYesNoDialog(SaveMemoPopup.this, "메모", "작성한 내역이 취소됩니다.", new AlertUtils.YesNoDialogCallBack() {
+                        @Override
+                        public void onYes() {
+                            finish();
+                        }
+
+                        @Override
+                        public void onNo() {
+
+                        }
+                    });
+                }else {
+                    finish();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!editSubject.getText().toString().equals("")||!editComment.getText().toString().equals("")){
+            AlertUtils.showYesNoDialog(SaveMemoPopup.this, "메모", "작성한 내역이 취소됩니다.", new AlertUtils.YesNoDialogCallBack() {
+                @Override
+                public void onYes() {
+                    finish();
+                }
+
+                @Override
+                public void onNo() {
+
+                }
+            });
+        }else {
+            finish();
+        }
     }
 }
