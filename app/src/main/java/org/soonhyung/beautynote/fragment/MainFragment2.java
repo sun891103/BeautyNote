@@ -14,8 +14,6 @@ import org.soonhyung.beautynote.R;
  */
 
 public class MainFragment2 extends Fragment{
-    public MainFragment2() {
-    }
 
     @Nullable
     @Override
