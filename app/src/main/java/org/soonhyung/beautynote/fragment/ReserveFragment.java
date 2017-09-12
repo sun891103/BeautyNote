@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import org.soonhyung.beautynote.R;
 import org.soonhyung.beautynote.popup.SaveMemberPopup;
@@ -30,7 +30,7 @@ public class ReserveFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        ((Button) getView().findViewById(R.id.btn_add_reserve)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) getView().findViewById(R.id.btn_add_reserve)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), SaveMemberPopup.class));

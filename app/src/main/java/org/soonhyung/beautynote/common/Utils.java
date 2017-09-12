@@ -26,6 +26,15 @@ public class Utils {
         return properties.getProperty(key, null);
     }
 
+    public static String getQuery(Context context, String key) throws IOException {
+        Resources resources = context.getResources();
+        InputStream rawResource = resources.openRawResource(R.raw.db);
+        Properties properties = new Properties();
+        properties.load(rawResource);
+
+        return properties.getProperty(key, null);
+    }
+
     public static void saveSharedPreferences(Context context, String key, String text) {
         SharedPreferences pref = context.getSharedPreferences("profile", Service.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
