@@ -8,12 +8,14 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import org.soonhyung.beautynote.R;
 import org.soonhyung.beautynote.activity.MainActivity;
 import org.soonhyung.beautynote.adapter.MemoListAdapter;
+import org.soonhyung.beautynote.common.AlertUtils;
 import org.soonhyung.beautynote.common.Dictionary;
 import org.soonhyung.beautynote.common.Utils;
 import org.soonhyung.beautynote.popup.SaveMemoPopup;
@@ -40,23 +42,27 @@ public class MemoFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.flagment_memo, container, false);
+        View view = inflater.inflate(R.layout.flagment_memo, container, false);
+        init(view);
+        return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        init();
+        initDB();
     }
 
-    private void init(){
-        btnAddMemo = (ImageButton) getView().findViewById(R.id.btn_add_memo);
-        listMemo = (ListView) getView().findViewById(R.id.list_memo);
-
-        initDB();
+    private void init(View view){
+        btnAddMemo = (ImageButton) view.findViewById(R.id.btn_add_memo);
+        listMemo = (ListView) view.findViewById(R.id.list_memo);
+        memoListAdapter = new MemoListAdapter(getActivity(), R.layout.memo_list, arrMemo);
+        listMemo.setAdapter(memoListAdapter);
 
         initEvent();
+
+        initDB();
     }
 
     private void initDB(){
@@ -77,11 +83,11 @@ public class MemoFragment extends Fragment{
             dic.addString("id", cursor.getString(0));
             dic.addString("subject", cursor.getString(1));
             dic.addString("comment", cursor.getString(2));
+            dic.addString("view", "gone");
             arrMemo.add(dic);
         }
 
-        memoListAdapter = new MemoListAdapter(getActivity(), R.layout.memo_list, arrMemo);
-        listMemo.setAdapter(memoListAdapter);
+        memoListAdapter.notifyDataSetChanged();
     }
 
     private void initEvent(){
@@ -89,6 +95,43 @@ public class MemoFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), SaveMemoPopup.class));
+            }
+        });
+
+        listMemo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(arrMemo.get(i).getString("view").equals("gone")){
+                    arrMemo.get(i).addString("view", "visible");
+                }else if(arrMemo.get(i).getString("view").equals("visible")){
+                    arrMemo.get(i).addString("view", "gone");
+                }
+                memoListAdapter.notifyDataSetChanged();
+            }
+        });
+
+        listMemo.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                AlertUtils.showYesNoDialog(getActivity(), "메모", arrMemo.get(i).getString("subject") + "\r\n항목을 삭제하시겠습니까?", new AlertUtils.YesNoDialogCallBack() {
+                    @Override
+                    public void onYes() {
+                        String sql = "";
+                        try {
+                            sql = String.format(Utils.getQuery(getActivity(), "db.delMemo"), arrMemo.get(i).getString("id"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        MainActivity.execSql(sql);
+                        initDB();
+                    }
+
+                    @Override
+                    public void onNo() {
+
+                    }
+                });
+                return true;
             }
         });
     }

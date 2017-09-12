@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.soonhyung.beautynote.R;
@@ -44,10 +45,22 @@ public class MemoListAdapter extends ArrayAdapter<Dictionary> {
         TextView txtId = (TextView) view.findViewById(R.id.item_id);
         TextView txtSubject = (TextView) view.findViewById(R.id.item_subject);
         TextView txtComment = (TextView) view.findViewById(R.id.item_comment);
+        ImageView imgLine = (ImageView) view.findViewById(R.id.item_line);
+        ImageView imgVisible = (ImageView) view.findViewById(R.id.item_visible);
 
         txtId.setText(objects.get(position).getString("id"));
         txtSubject.setText(objects.get(position).getString("subject"));
         txtComment.setText(objects.get(position).getString("comment"));
+
+        if(objects.get(position).getString("view").equals("visible")){
+            txtComment.setVisibility(View.VISIBLE);
+            imgLine.setVisibility(View.VISIBLE);
+            imgVisible.setImageResource(android.R.drawable.arrow_up_float);
+        } else if(objects.get(position).getString("view").equals("gone")){
+            txtComment.setVisibility(View.GONE);
+            imgLine.setVisibility(View.VISIBLE);
+            imgVisible.setImageResource(android.R.drawable.arrow_down_float);
+        }
 
         return view;
     }

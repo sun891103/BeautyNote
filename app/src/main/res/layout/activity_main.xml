@@ -30,12 +30,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
-                <fragment
-                    android:id="@+id/frag_memo"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:name="org.soonhyung.beautynote.fragment.MemoFragment"/>
+                    android:layout_weight="3">
+                    <fragment
+                        android:id="@+id/frag_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:name="org.soonhyung.beautynote.fragment.MainFragment"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/line"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <fragment
+                        android:id="@+id/frag_memo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:name="org.soonhyung.beautynote.fragment.MemoFragment"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

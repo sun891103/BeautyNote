@@ -10,5 +10,6 @@
     <color name="btnColor">#FFB2D9</color>
     <color name="line">#EAEAEA</color>
     <color name="listBackColor">#FFEDF6</color>
+    <color name="listTextColor">#A6A6A6</color>
     <color name="Transparency">#00000000</color>
 </resources>
