@@ -17,7 +17,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#EAEAEA"/>
+        android:background="@color/line"/>
     <EditText
         android:id="@+id/edit_memo_comment"
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#EAEAEA"/>
+        android:background="@color/line"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,8 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:textColor="#FFFFFF"
-            android:background="#FFB2D9"
+            android:textColor="@color/btnTextColor"
+            android:background="@color/btnColor"
             android:text="등록"/>
         <Button
             android:id="@+id/btn_memo_cancel"
@@ -51,8 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:textColor="#FFFFFF"
-            android:background="#FFB2D9"
+            android:textColor="@color/btnTextColor"
+            android:background="@color/btnColor"
             android:text="취소"/>
     </LinearLayout>
 </LinearLayout>

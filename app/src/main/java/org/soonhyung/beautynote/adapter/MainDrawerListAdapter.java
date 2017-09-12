@@ -35,7 +35,7 @@ public class MainDrawerListAdapter extends ArrayAdapter<Dictionary> {
 			view = inflater.inflate(resourceId, null);
 		}
 
-		ImageView imageview = (ImageView)view.findViewById(R.id.imageview);
+		ImageView imageview = (ImageView)view.findViewById(R.id.img_menu_list);
 		imageview.setBackgroundResource(rId[position]);
 
 		return view;

@@ -28,7 +28,7 @@ import org.soonhyung.beautynote.database.MySQLiteOpenHelper;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.soonhyung.beautynote.R.id.drawer_layout;
+import static org.soonhyung.beautynote.R.id.drawer_menu;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
-        drawerLayout = (DrawerLayout) findViewById(drawer_layout);
-        menuListview = (ListView) findViewById(R.id.menu_listview);
+        drawerLayout = (DrawerLayout) findViewById(drawer_menu);
+        menuListview = (ListView) findViewById(R.id.list_menu);
         View header = LayoutInflater.from(this).inflate(R.layout.drawer_list_header, null);
         menuListview.addHeaderView(header);
         Dictionary dic = new Dictionary();

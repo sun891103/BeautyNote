@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout">
+    android:id="@+id/drawer_menu">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,7 +18,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
                 <fragment
-                    android:id="@+id/fragment_reserve"
+                    android:id="@+id/frag_reserve"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:name="org.soonhyung.beautynote.fragment.ReserveFragment"/>
@@ -26,13 +26,13 @@
             <ImageView
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#EAEAEA"/>
+                android:background="@color/line"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
                 <fragment
-                    android:id="@+id/fragment_memo"
+                    android:id="@+id/frag_memo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:name="org.soonhyung.beautynote.fragment.MemoFragment"/>
@@ -48,11 +48,11 @@
     </FrameLayout>
 
     <ListView
-        android:id="@+id/menu_listview"
+        android:id="@+id/list_menu"
         android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:listSelector="#00000000"
+        android:listSelector="@color/Transparency"
         android:divider="@null">
     </ListView>
 </android.support.v4.widget.DrawerLayout>

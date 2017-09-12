@@ -72,6 +72,7 @@ public class SaveMemoPopup extends Activity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
                         MainActivity.execSql(String.format(sql, editSubject.getText().toString(), editComment.getText().toString()));
 
                         finish();

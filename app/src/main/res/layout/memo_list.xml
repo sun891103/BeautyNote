@@ -14,17 +14,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:text="제목"/>
+        android:padding="3dp"
+        android:textSize="18sp"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#EAEAEA"/>
+        android:background="@color/line"/>
 
     <TextView
         android:id="@+id/item_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:text="내용"/>
+        android:padding="3dp"
+        android:textSize="15sp"/>
 </LinearLayout>
