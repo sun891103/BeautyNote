@@ -45,10 +45,23 @@ public class MainFragment extends Fragment {
 
     private String getTime(){
         cal = new GregorianCalendar();
-        return String.format("%d년 %d월 %d일  %02d:%02d:%02d"
+        String dayOfWeek = "";
+
+        switch (cal.get(Calendar.DAY_OF_WEEK)){
+            case 1 : dayOfWeek = "일"; break;
+            case 2 : dayOfWeek = "월"; break;
+            case 3 : dayOfWeek = "화"; break;
+            case 4 : dayOfWeek = "수"; break;
+            case 5 : dayOfWeek = "목"; break;
+            case 6 : dayOfWeek = "금"; break;
+            case 7 : dayOfWeek = "토"; break;
+        }
+
+        return String.format("%d년 %d월 %d일 %s요일 %02d:%02d:%02d"
                 , cal.get(Calendar.YEAR)
                 , cal.get(Calendar.MONTH) + 1
                 , cal.get(Calendar.DAY_OF_MONTH)
+                , dayOfWeek
                 , cal.get(Calendar.HOUR)
                 , cal.get(Calendar.MINUTE)
                 , cal.get(Calendar.SECOND));
