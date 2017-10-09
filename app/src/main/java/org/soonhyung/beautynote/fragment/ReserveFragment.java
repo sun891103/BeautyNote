@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.soonhyung.beautynote.R;
 import org.soonhyung.beautynote.adapter.ReserveListAdapter;
@@ -67,11 +68,29 @@ public class ReserveFragment extends Fragment {
                 if (jsonObject.optString("resultCode").equals("0000")) {
                     AlertUtils.dismissSaveDialog(getActivity());
 
-                    for(int i=0; i<=20; i++){
+                    /*for(int i=0; i<=20; i++){
                         Dictionary dic = new Dictionary();
                         dic.addString("time", i + "시");
                         dic.addString("custom", "임한솔");
                         arrReserve.add(dic);
+                    }*/
+                    try {
+                        Dictionary dic;
+
+                        for (int i = 0; i < jsonObject.getJSONArray("rows").length(); i++) {
+                            dic = new Dictionary();
+                            String startTime = jsonObject.getJSONArray("rows").getJSONObject(i).getString("startTime");
+                            String endTime = jsonObject.getJSONArray("rows").getJSONObject(i).getString("endTime");
+                            String strTime = startTime.substring(0, 2) + ":" + startTime.substring(2)
+                                    + " ~ " + endTime.substring(0, 2) + ":" + endTime.substring(2);
+
+                            dic.addString("time", strTime);
+                            dic.addString("custom", jsonObject.getJSONArray("rows").getJSONObject(i).getString("name"));
+                            arrReserve.add(dic);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
 
                     reserveListAdapter.notifyDataSetChanged();
