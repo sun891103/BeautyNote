@@ -1,5 +1,6 @@
 package org.soonhyung.beautynote.activity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,6 +25,7 @@ import org.soonhyung.beautynote.common.AlertUtils;
 import org.soonhyung.beautynote.common.Dictionary;
 import org.soonhyung.beautynote.common.Utils;
 import org.soonhyung.beautynote.database.MySQLiteOpenHelper;
+import org.soonhyung.beautynote.popup.SaveCustomerPopup;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -157,7 +159,15 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String id = arrMenu.get(i - 1).getString("id");
                 String name = arrMenu.get(i - 1).getString("name");
-                AlertUtils.showOkDialog(MainActivity.this, name, "개발중", null);
+
+                switch (id){
+                    case "4" :
+                        startActivity(new Intent(getApplicationContext(), SaveCustomerPopup.class));
+                        break;
+                    default :
+                        AlertUtils.showOkDialog(MainActivity.this, name, "개발중", null);
+                        break;
+                }
             }
         });
     }

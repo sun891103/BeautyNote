@@ -26,7 +26,11 @@
         <activity
             android:name=".popup.SaveMemberPopup"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
-        <activity android:name=".popup.SaveMemoPopup"
+        <activity
+            android:name=".popup.SaveMemoPopup"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
+        <activity
+            android:name=".popup.SaveCustomerPopup"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
     </application>
 
