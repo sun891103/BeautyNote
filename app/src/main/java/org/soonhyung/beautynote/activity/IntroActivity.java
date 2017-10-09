@@ -7,10 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import org.soonhyung.beautynote.R;
-import org.soonhyung.beautynote.common.Global;
-import org.soonhyung.beautynote.common.Utils;
-
-import java.io.IOException;
+import org.soonhyung.beautynote.common.URL;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -29,15 +26,7 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     private void init(){
-        try {
-            Utils.saveSharedPreferences(IntroActivity.this, Global.S_VERSION, Utils.getProperty(getApplicationContext(), Global.C_VERSION));
-            Utils.saveSharedPreferences(IntroActivity.this, Global.S_URL, "http://" +
-                    Utils.getProperty(getApplicationContext(), Global.C_HOST) + ":" +
-                    Utils.getProperty(getApplicationContext(), Global.C_PORT) + "/"
-            );
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        URL.set(getApplicationContext());
 
         if(mThread == null) {
             mThread = new StartThread();

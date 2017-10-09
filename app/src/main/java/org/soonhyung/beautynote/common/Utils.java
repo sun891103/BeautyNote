@@ -9,6 +9,7 @@ import org.soonhyung.beautynote.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.Properties;
 
 /**
@@ -46,5 +47,9 @@ public class Utils {
         SharedPreferences pref = context.getSharedPreferences("profile", Service.MODE_PRIVATE);
 
         return pref.getString(key,null);
+    }
+
+    public static String getCommaFormat(String num){
+        return num.equals("") ? "" : new DecimalFormat("###,###,###,###").format(Long.parseLong(num));
     }
 }

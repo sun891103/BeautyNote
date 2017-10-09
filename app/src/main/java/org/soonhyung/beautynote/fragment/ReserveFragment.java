@@ -9,9 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import org.json.JSONObject;
 import org.soonhyung.beautynote.R;
 import org.soonhyung.beautynote.adapter.ReserveListAdapter;
+import org.soonhyung.beautynote.common.AQueryCallback;
+import org.soonhyung.beautynote.common.AlertUtils;
 import org.soonhyung.beautynote.common.Dictionary;
+import org.soonhyung.beautynote.common.URL;
 
 import java.util.ArrayList;
 
@@ -51,13 +55,37 @@ public class ReserveFragment extends Fragment {
         reserveListAdapter = new ReserveListAdapter(getActivity(), R.layout.reserve_list, arrReserve);
         listReserve.setAdapter(reserveListAdapter);
 
-        for(int i=10; i<=21; i++){
-            Dictionary dic = new Dictionary();
-            dic.addString("time", i + "시");
-            dic.addString("custom", "임한솔");
-            arrReserve.add(dic);
-        }
+        selReserve();
+    }
 
-        reserveListAdapter.notifyDataSetChanged();
+    private void selReserve(){
+        AlertUtils.showSelDialog(getActivity());
+
+        new AQueryCallback(URL.selReserve, null, getActivity(), new AQueryCallback.AQueryCallBackListener() {
+            @Override
+            public void httpRequestComplete(JSONObject jsonObject) {
+                if (jsonObject.optString("resultCode").equals("0000")) {
+                    AlertUtils.dismissSaveDialog(getActivity());
+
+                    for(int i=0; i<=20; i++){
+                        Dictionary dic = new Dictionary();
+                        dic.addString("time", i + "시");
+                        dic.addString("custom", "임한솔");
+                        arrReserve.add(dic);
+                    }
+
+                    reserveListAdapter.notifyDataSetChanged();
+                }else{
+                    AlertUtils.dismissSaveDialog(getActivity());
+                    AlertUtils.showOkDialog(getActivity(), "알림", jsonObject.optString("result"), null);
+                }
+            }
+
+            @Override
+            public void httpRequestError() {
+                AlertUtils.dismissSaveDialog(getActivity());
+                AlertUtils.showOkDialog(getActivity(), "알림", "인터넷 환경이 불안정 합니다./r/n다시 시도해 주세요.", null);
+            }
+        });
     }
 }
